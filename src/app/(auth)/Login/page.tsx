@@ -2,7 +2,7 @@
 import { login } from "@/store/features/user.slice";
 import { Box, Button, Paper, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import { useAppDispatch, useAppSelector } from "@/hooks/store.hooks";
+import { useAppDispatch } from "@/hooks/store.hooks";
 import { useRouter } from "next/navigation";
 
 export default function Page() { 
