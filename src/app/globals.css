@@ -5,7 +5,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    /* --background: #0a0a0a; */
     --foreground: #ededed;
   }
 }
@@ -39,4 +39,12 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.active{
+  background-color: #ffffff;
+  color: #36d;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 5px 12px;
 }
