@@ -6,15 +6,15 @@ import { useAppDispatch, useAppSelector } from "@/hooks/store.hooks";
 import { getPostDetails } from "@/store/features/posts.slice";
 import { useEffect } from "react";
 
-export default function Page({ params }: { params: { postId: string } }) {
-  const { postId } = params;
+export default async function Page({ params }: { params: Promise<{ postId: string }> }) {
+  const { postId } = await params; 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getPostDetails(postId));
   }, [dispatch, postId]);
 
-  const { postDetails } = useAppSelector((store) => store.PostsReduser); 
+  const { postDetails } = useAppSelector((store) => store.PostsReduser);
 
   return (
     <>
