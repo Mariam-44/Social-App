@@ -4,15 +4,26 @@ import Loading from "@/components/Loading/Loading";
 import PostCard from "@/components/PostCard/PostCard";
 import { useAppDispatch, useAppSelector } from "@/hooks/store.hooks";
 import { getPostDetails } from "@/store/features/posts.slice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export default async function Page({ params }: { params: Promise<{ postId: string }> }) {
-  const { postId } = await params; 
+export default function Page({ params }: { params: Promise<{ postId: string }> }) {
+ 
+  const [resolvedParams, setResolvedParams] = useState<{ postId: string } | null>(null);
+
+  useEffect(() => {
+
+    params.then((data) => {
+      setResolvedParams(data);
+    });
+  }, [params]);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getPostDetails(postId));
-  }, [dispatch, postId]);
+    if (resolvedParams?.postId) {
+      dispatch(getPostDetails(resolvedParams.postId));
+    }
+  }, [dispatch, resolvedParams]);
 
   const { postDetails } = useAppSelector((store) => store.PostsReduser);
 
