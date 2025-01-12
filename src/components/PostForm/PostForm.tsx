@@ -34,7 +34,7 @@ export default function PostForm() {
         data: postData,
       };
 
-      let { data } = await axios.request(options);
+      const { data } = await axios.request(options);
       console.log(data);
 
       if (data.message === "success") {

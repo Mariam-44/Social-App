@@ -5,8 +5,6 @@ import "./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "@/theme";
-import { Provider } from "react-redux";
-import { store } from "@/store/store";
 import ReduxProvider from "@/components/ReduxProvider/ReduxProvider";
 import Navbar from "@/components/Navbar/Navbar";
 import { Toaster } from "react-hot-toast";

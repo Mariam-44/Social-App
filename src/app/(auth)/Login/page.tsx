@@ -1,13 +1,9 @@
 "use client"
 import { login } from "@/store/features/user.slice";
-import { store } from "@/store/store";
 import { Box, Button, Paper, TextField } from "@mui/material";
-import { RootState } from "@/store/store";
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
 import { useAppDispatch, useAppSelector } from "@/hooks/store.hooks";
 import { useRouter } from "next/navigation";
-import { error } from "console";
 
 export default function page() {
     const dispatch = useAppDispatch()

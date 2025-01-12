@@ -16,7 +16,7 @@ export const login = createAsyncThunk(
       method: "POST",
       data: values,
     };
-    let { data } = await axios.request(options);
+    const { data } = await axios.request(options);
     return data;
   }
 );
@@ -52,7 +52,7 @@ const userSlice = createSlice({
       localStorage.setItem("token", action.payload.token);
       toast.success("Welcome Back");
     });
-    builder.addCase(login.rejected, (state, action) => {
+    builder.addCase(login.rejected, () => {
       toast.error("Incorrect email or password");
     });
 
@@ -62,7 +62,7 @@ const userSlice = createSlice({
       localStorage.setItem("token", action.payload.token);
       toast.success("Account created successfully! Welcome aboard.");
     });
-    builder.addCase(signup.rejected, (state, action) => {
+    builder.addCase(signup.rejected, () => {
       toast.error("Signup failed. Please try again.");
     });
   },

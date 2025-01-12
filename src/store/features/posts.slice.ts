@@ -59,7 +59,7 @@ const postSlice = createSlice({
        
 
     })
-    builder.addCase(getPosts.rejected , (state , action)=>{
+    builder.addCase(getPosts.rejected , ( )=>{
         console.log("rejected");
         
     })
@@ -70,7 +70,7 @@ const postSlice = createSlice({
        
 
     })
-    builder.addCase(getPostDetails.rejected , (state , action)=>{
+    builder.addCase(getPostDetails.rejected , ( )=>{
       console.log("rejected");
     })
   }

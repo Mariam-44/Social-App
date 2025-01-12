@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 import { signup } from "@/store/features/user.slice";
 import { useAppDispatch } from "@/hooks/store.hooks";
-import toast from "react-hot-toast";
+
 
 export default function Page() {
   const router = useRouter();
