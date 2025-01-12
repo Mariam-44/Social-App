@@ -30,7 +30,7 @@ export const signup = createAsyncThunk(
       method: "POST",
       data: values,
     };
-    let { data } = await axios.request(options);
+    const { data } = await axios.request(options);
     return data;
   }
 );

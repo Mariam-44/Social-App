@@ -1,13 +1,13 @@
-"use client"
+"use client";
 import { login } from "@/store/features/user.slice";
 import { Box, Button, Paper, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { useAppDispatch, useAppSelector } from "@/hooks/store.hooks";
 import { useRouter } from "next/navigation";
 
-export default function page() {
-    const dispatch = useAppDispatch()
-    const router = useRouter()
+export default function Page() { 
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues: {
@@ -15,25 +15,26 @@ export default function page() {
       password: "",
     },
     onSubmit: (values) => {
-        dispatch(login(values)).then((res)=>{
-            if(res.payload.message === "success"){
-                setTimeout(()=>{
-                    router.push("/")
-                },2000)
-            }
-        }).catch((error)=>{
-            console.log({error});
-            
+      dispatch(login(values))
+        .then((res) => {
+          if (res.payload.message === "success") {
+            setTimeout(() => {
+              router.push("/");
+            }, 2000);
+          }
         })
-        
+        .catch((error) => {
+          console.log({ error });
+        });
     },
   });
+
   return (
     <>
       <Box sx={{ width: "600px", mx: "auto", p: 2 }}>
         <Paper elevation={6} sx={{ p: 4, mt: 5 }}>
           <form
-          onSubmit={formik.handleSubmit}
+            onSubmit={formik.handleSubmit}
             style={{ display: "flex", flexDirection: "column", gap: "15px" }}
           >
             <TextField
@@ -54,7 +55,9 @@ export default function page() {
               onChange={formik.handleChange}
               name="password"
             />
-            <Button type="submit" variant="contained">Login</Button>
+            <Button type="submit" variant="contained">
+              Login
+            </Button>
           </form>
         </Paper>
       </Box>

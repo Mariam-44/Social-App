@@ -1,23 +1,28 @@
-'use client'
+'use client';
 
-import Loading from "@/components/Loading/Loading"
-import PostCard from "@/components/PostCard/PostCard"
-import { useAppDispatch, useAppSelector } from "@/hooks/store.hooks"
-import { getPostDetails } from "@/store/features/posts.slice"
-import { use, useEffect } from "react"
+import Loading from "@/components/Loading/Loading";
+import PostCard from "@/components/PostCard/PostCard";
+import { useAppDispatch, useAppSelector } from "@/hooks/store.hooks";
+import { getPostDetails } from "@/store/features/posts.slice";
+import { useEffect } from "react";
 
-export default function page({params}: {params :  Promise<{postId : string}>}) {
+export default function Page({ params }: { params: { postId: string } }) {
+  const { postId } = params;
+  const dispatch = useAppDispatch();
 
-    const {postId} = use(params)
-    const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(getPostDetails(postId));
+  }, [dispatch, postId]);
 
-    useEffect(()=>{
-        dispatch(getPostDetails(postId))
-    },[])
+  const { postDetails } = useAppSelector((store) => store.PostsReduser); 
 
-    let {postDetails} = useAppSelector((store)=>store.PostsReduser)
-  return <>
-      {postDetails ? <PostCard postInfo={postDetails} showAllComments={true}/> : <Loading/>}
+  return (
+    <>
+      {postDetails ? (
+        <PostCard postInfo={postDetails} showAllComments={true} />
+      ) : (
+        <Loading />
+      )}
     </>
-  
+  );
 }
