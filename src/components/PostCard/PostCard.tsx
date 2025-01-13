@@ -31,20 +31,26 @@ export default function PostCard({
   postInfo: Post;
   showAllComments?: boolean;
 }) {
-  const [liked, setLiked] = React.useState(false); // Track if the post is liked
+  const [liked, setLiked] = React.useState(false); 
 
   const postKey = `liked_${postInfo._id}`;
 
+
   React.useEffect(() => {
-    const storedLiked = localStorage.getItem(postKey);
-    setLiked(storedLiked === "true");
+    if (typeof window !== "undefined") {
+      const storedLiked = localStorage.getItem(postKey);
+      setLiked(storedLiked === "true");
+    }
   }, [postKey]);
 
-  // Toggle like state and update localStorage
+ 
   const toggleLike = () => {
     const newLikedState = !liked;
     setLiked(newLikedState);
-    localStorage.setItem(postKey, String(newLikedState));
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem(postKey, String(newLikedState));
+    }
   };
 
   return (
@@ -83,8 +89,8 @@ export default function PostCard({
       <CardActions disableSpacing>
         <IconButton
           aria-label="like"
-          onClick={toggleLike} 
-          sx={{ color: liked ? "blue" : undefined }} 
+          onClick={toggleLike}
+          sx={{ color: liked ? "blue" : "inherit" }}
         >
           <ThumbUpIcon />
         </IconButton>
